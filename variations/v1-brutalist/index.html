@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GRITA KARAOKE - Brutalist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --gold: #d4af37;
+      --black: #0a0a0a;
+      --white: #f5f5f5;
+    }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Space Mono', monospace;
+      min-height: 100vh;
+    }
+    
+    /* BRUTALIST GRID */
+    .grid-overlay {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .grid-overlay span {
+      border-left: 1px solid rgba(212, 175, 55, 0.1);
+    }
+    
+    header {
+      border-bottom: 4px solid var(--gold);
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      color: var(--gold);
+      letter-spacing: 8px;
+    }
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      margin-left: 40px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 2px solid transparent;
+    }
+    nav a:hover {
+      border-bottom-color: var(--gold);
+    }
+    
+    .hero {
+      height: 80vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 4px solid var(--gold);
+    }
+    .hero-left {
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 4px solid var(--gold);
+    }
+    .hero-left h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 120px;
+      line-height: 0.9;
+      color: var(--gold);
+    }
+    .hero-left p {
+      font-size: 14px;
+      margin-top: 40px;
+      line-height: 1.8;
+      max-width: 400px;
+    }
+    .hero-right {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+    }
+    .hero-img {
+      background: url('/assets/interior-1.jpg') center/cover;
+      border-bottom: 2px solid var(--gold);
+    }
+    .hero-img:last-child {
+      background-image: url('/assets/exterior.jpg');
+      border-bottom: none;
+    }
+    
+    .section {
+      padding: 80px 60px;
+      border-bottom: 4px solid var(--gold);
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 72px;
+      color: var(--gold);
+      margin-bottom: 40px;
+    }
+    
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .menu-item {
+      border: 2px solid var(--gold);
+      padding: 40px;
+    }
+    .menu-item h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      color: var(--gold);
+    }
+    .menu-item p {
+      font-size: 12px;
+      margin-top: 10px;
+      opacity: 0.7;
+    }
+    .menu-item .price {
+      font-size: 18px;
+      margin-top: 20px;
+      color: var(--gold);
+    }
+    
+    .reserve {
+      background: var(--gold);
+      color: var(--black);
+      text-align: center;
+      padding: 100px;
+    }
+    .reserve h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 96px;
+    }
+    .reserve-btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 20px 60px;
+      background: var(--black);
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+    .reserve-btn:hover {
+      background: var(--white);
+      color: var(--black);
+    }
+    
+    footer {
+      padding: 40px 60px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      border-top: 2px solid var(--gold);
+    }
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-overlay">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+  </div>
+  
+  <header>
+    <div class="logo">GRITA</div>
+    <nav>
+      <a href="#">Menu</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Reserve</a>
+    </nav>
+  </header>
+  
+  <section class="hero">
+    <div class="hero-left">
+      <h1>SING.<br>SIP.<br>SAVOR.</h1>
+      <p>Barcelona's underground karaoke bar. Raw space. Real drinks. No pretense.</p>
+    </div>
+    <div class="hero-right">
+      <div class="hero-img"></div>
+      <div class="hero-img"></div>
+    </div>
+  </section>
+  
+  <section class="section">
+    <h2 class="section-title">MENU</h2>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <h3>SAKE FLIGHT</h3>
+        <p>Selection of three premium sakes</p>
+        <div class="price">€18</div>
+      </div>
+      <div class="menu-item">
+        <h3>SIGNATURE SUSHI</h3>
+        <p>12-piece omakase selection</p>
+        <div class="price">€32</div>
+      </div>
+      <div class="menu-item">
+        <h3>WAGYU NIGIRI</h3>
+        <p>A5 wagyu, truffle, gold leaf</p>
+        <div class="price">€28</div>
+      </div>
+      <div class="menu-item">
+        <h3>YUZU HIGHBALL</h3>
+        <p>Japanese whisky, yuzu, soda</p>
+        <div class="price">€14</div>
+      </div>
+      <div class="menu-item">
+        <h3>MATCHA TIRAMISU</h3>
+        <p>Layers of matcha cream, mascarpone</p>
+        <div class="price">€12</div>
+      </div>
+      <div class="menu-item">
+        <h3>MOCHI ICE CREAM</h3>
+        <p>Assorted flavors, 3 pieces</p>
+        <div class="price">€9</div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="reserve">
+    <h2>BOOK YOUR ROOM</h2>
+    <a href="#" class="reserve-btn">Reserve Now</a>
+  </section>
+  
+  <footer>
+    <div>GRITA KARAOKE — Barcelona, Spain</div>
+    <div>
+      <a href="#">Instagram</a> / <a href="#">Contact</a>
+    </div>
+  </footer>
+</body>
+</html>

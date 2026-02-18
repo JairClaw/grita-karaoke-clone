@@ -3,173 +3,683 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grita Karaoke</title>
-  <meta name="description" content="A private karaoke rooms venue in the heart of Barcelona.">
-  
-  <!-- Favicon -->
-  <link href="assets/images/favicon-light.png" rel="icon" media="(prefers-color-scheme: light)">
-  <link href="assets/images/favicon-dark.png" rel="icon" media="(prefers-color-scheme: dark)">
-  
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Forum&family=Inter+Display:wght@400;500;700&display=swap" rel="stylesheet">
-  
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/styles.css">
-  
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Grita Karaoke">
-  <meta property="og:description" content="A private karaoke rooms venue in the heart of Barcelona.">
+  <title>GRITA — Karaoke Bar Barcelona</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=Josefin+Sans:wght@100;200;300&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --gold: #d4af37;
+      --gold-muted: rgba(212, 175, 55, 0.3);
+      --black: #0a0a0a;
+      --white: #fafafa;
+      --gray: #888;
+      --dark: #111;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 25px 60px;
+      background: rgba(10, 10, 10, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--gold-muted);
+    }
+    .nav-left, .nav-right {
+      display: flex;
+      gap: 40px;
+    }
+    .nav-right { justify-content: flex-end; }
+    header a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    header a:hover { color: var(--gold); }
+    .logo {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 200;
+      color: var(--gold);
+      letter-spacing: 8px;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .logo span {
+      opacity: 0.4;
+      margin: 0 12px;
+      font-weight: 100;
+    }
+    
+    /* HERO - SPLIT LAYOUT: 1/3 TEXT | 2/3 VIDEO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      padding-top: 80px;
+    }
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px;
+      background: var(--black);
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+    }
+    .hero h1 span {
+      opacity: 0.5;
+      margin: 0 15px;
+    }
+    .hero-tagline {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-top: 30px;
+      color: var(--gray);
+    }
+    .hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-style: italic;
+      margin-top: 20px;
+      color: var(--white);
+      opacity: 0.8;
+      line-height: 1.5;
+    }
+    .hero-cta {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .hero-video-wrapper {
+      position: relative;
+      overflow: hidden;
+      background: var(--black);
+    }
+    .hero-video, .hero-gif, .hero-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-canvas {
+      display: none;
+    }
+    .hero-video-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(10, 10, 10, 0.3) 0%,
+        transparent 40%
+      );
+      pointer-events: none;
+    }
+    .btn {
+      padding: 16px 40px;
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--black);
+    }
+    .btn-primary:hover {
+      background: var(--white);
+    }
+    .btn-outline {
+      border: 1px solid var(--gold);
+      color: var(--gold);
+    }
+    .btn-outline:hover {
+      background: var(--gold);
+      color: var(--black);
+    }
+    
+    /* SECTIONS */
+    .section {
+      border-top: 1px solid var(--gold-muted);
+    }
+    .section-header {
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      border-bottom: 1px solid var(--gold-muted);
+    }
+    .section-number {
+      padding: 30px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      color: var(--gold);
+      border-right: 1px solid var(--gold-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .section-title {
+      padding: 30px 40px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      display: flex;
+      align-items: center;
+    }
+    .section-link {
+      padding: 30px 40px;
+      display: flex;
+      align-items: center;
+    }
+    .section-link a {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    
+    /* ROOMS - 5 CARDS: 3 + 2 FULL WIDTH, NO GAPS */
+    .rooms-grid {
+      display: grid;
+    }
+    .rooms-row {
+      display: grid;
+    }
+    .rooms-row-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .rooms-row-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .room-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--dark);
+      border-right: 1px solid var(--gold-muted);
+    }
+    .rooms-row-3 .room-card:last-child,
+    .rooms-row-2 .room-card:last-child {
+      border-right: none;
+    }
+    .rooms-row-3 {
+      border-bottom: 1px solid var(--gold-muted);
+    }
+    .room-image {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s, opacity 0.3s;
+    }
+    .room-card:hover .room-image {
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
+    .room-info {
+      padding: 30px;
+      border-top: 1px solid var(--gold-muted);
+    }
+    .room-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      color: var(--gold);
+      margin-bottom: 5px;
+    }
+    .room-capacity {
+      font-size: 11px;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
+    .room-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.8);
+    }
+    
+    /* DRINKS SECTION */
+    .drinks-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .drinks-col {
+      padding: 60px;
+      border-right: 1px solid var(--gold-muted);
+    }
+    .drinks-col:last-child { border-right: none; }
+    .drinks-category {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--gold-muted);
+    }
+    .drink-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+    .drink-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+    }
+    .drink-price {
+      color: var(--gold);
+      font-size: 14px;
+    }
+    .drink-desc {
+      font-size: 12px;
+      color: var(--gray);
+      margin-bottom: 25px;
+    }
+    
+    /* ABOUT SECTION */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .about-text {
+      padding: 80px 60px;
+      border-right: 1px solid var(--gold-muted);
+    }
+    .about-text p {
+      font-size: 16px;
+      line-height: 1.9;
+      margin-bottom: 25px;
+    }
+    .about-text p:first-child::first-letter {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px;
+      float: left;
+      line-height: 0.8;
+      margin-right: 15px;
+      color: var(--gold);
+    }
+    .about-image {
+      background: url('assets/images/room-2.jpg') center/cover;
+      min-height: 400px;
+    }
+    
+    /* RESERVE CTA */
+    .reserve-cta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--gold-muted);
+    }
+    .reserve-left {
+      padding: 100px 60px;
+      border-right: 1px solid var(--gold-muted);
+    }
+    .reserve-left h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 400;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .reserve-left p {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.8;
+      max-width: 400px;
+    }
+    .reserve-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px;
+    }
+    
+    /* FOOTER */
+    footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      padding: 60px;
+      border-top: 1px solid var(--gold-muted);
+      font-size: 12px;
+    }
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .footer-center { text-align: center; }
+    .footer-right { text-align: right; }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      color: var(--gold);
+      letter-spacing: 6px;
+    }
+    .footer-address {
+      margin-top: 15px;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+    .footer-social {
+      display: flex;
+      gap: 30px;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+    .footer-hours {
+      color: var(--gray);
+      line-height: 1.7;
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      header { padding: 20px 30px; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-content { 
+        padding: 40px 30px; 
+        border-right: none; 
+        border-bottom: 1px solid var(--gold-muted);
+        text-align: center;
+        align-items: center;
+      }
+      .hero-cta { flex-direction: row; justify-content: center; }
+      .hero-video-wrapper { min-height: 50vh; }
+      .hero h1 { font-size: 64px; }
+      .section-header { grid-template-columns: 60px 1fr; }
+      .section-number { padding: 15px; font-size: 24px; }
+      .rooms-row-3, .rooms-row-2 { grid-template-columns: 1fr; }
+      .room-card { border-right: none; border-bottom: 1px solid var(--gold-muted); }
+      .drinks-layout, .about-layout, .reserve-cta { grid-template-columns: 1fr; }
+      .drinks-col, .about-text { border-right: none; border-bottom: 1px solid var(--gold-muted); }
+      footer { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+      .footer-right { text-align: center; }
+      .footer-social { justify-content: center; }
+    }
+  </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="nav">
-    <div class="nav-wrapper">
-      <a href="index.html" class="nav-logo">
-        <span>G R I T A</span>
-        <span>|</span>
-        <span>K A R A O K E</span>
-      </a>
-      <ul class="nav-links">
-        <li><a href="menu.html">MENU</a></li>
-        <li><a href="about.html">ABOUT</a></li>
-        <li><a href="contact.html">RESERVE</a></li>
-      </ul>
-      <button class="nav-toggle" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
+  <header>
+    <nav class="nav-left">
+      <a href="#rooms">Rooms</a>
+      <a href="#drinks">Drinks</a>
+    </nav>
+    <a href="#" class="logo">GRITA<span>|</span>KARAOKE</a>
+    <nav class="nav-right">
+      <a href="#about">About</a>
+      <a href="#reserve">Reserve</a>
+    </nav>
+  </header>
+  
   <section class="hero">
-    <video class="hero-video" autoplay muted loop playsinline>
-      <source src="assets/videos/hero.mp4" type="video/mp4">
-    </video>
-    <div class="hero-overlay-top"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content fade-in">
-      <div class="hero-stars">
-        <svg viewBox="0 0 24 27" fill="currentColor">
-          <path d="M 16.349 5.84 L 16.349 4.533 C 16.349 3.218 15.939 2.133 15.118 1.28 C 14.297 0.427 13.258 0 12 0 C 10.638 0 9.572 0.436 8.803 1.307 C 8.035 2.178 7.651 3.342 7.651 4.8 L 7.651 5.2 C 7.651 5.271 7.659 5.333 7.677 5.387 L 7.703 5.84 C 6.41 4.898 5.249 4.427 4.218 4.427 C 3.415 4.427 2.646 4.702 1.913 5.253 C 1.214 5.769 0.699 6.444 0.367 7.28 C 0.122 7.867 0 8.453 0 9.04 C 0 10.836 1.013 12.204 3.039 13.147 L 3.432 13.333 C 1.144 14.4 0 15.84 0 17.653 C 0 18.88 0.419 19.956 1.258 20.88 C 2.096 21.804 3.092 22.267 4.245 22.267 C 5.293 22.267 6.332 21.884 7.362 21.12 L 7.703 20.853 C 7.668 21.209 7.651 21.636 7.651 22.133 C 7.651 23.467 8.061 24.556 8.882 25.4 C 9.703 26.244 10.742 26.667 12 26.667 C 13.38 26.667 14.45 26.227 15.21 25.347 C 15.969 24.467 16.349 23.316 16.349 21.893 L 16.349 20.853 C 17.642 21.796 18.795 22.267 19.808 22.267 C 20.943 22.267 21.926 21.8 22.755 20.867 C 23.585 19.933 24 18.862 24 17.653 C 24 15.84 22.987 14.462 20.961 13.52 L 20.568 13.333 C 22.856 12.267 24 10.836 24 9.04 C 24 7.884 23.59 6.827 22.769 5.867 C 21.948 4.907 20.956 4.427 19.795 4.427 C 18.633 4.427 17.607 4.8 16.716 5.547 Z M 14.148 10.347 C 16.175 7.342 18.052 5.84 19.782 5.84 C 20.498 5.84 21.148 6.169 21.734 6.827 C 22.319 7.484 22.611 8.222 22.611 9.04 C 22.611 11.244 20.271 12.551 15.589 12.96 L 15.589 13.733 C 17.913 13.929 19.664 14.356 20.843 15.013 C 22.022 15.671 22.611 16.551 22.611 17.653 C 22.611 18.453 22.328 19.187 21.76 19.853 C 21.192 20.52 20.533 20.853 19.782 20.853 C 18.017 20.853 16.14 19.342 14.148 16.32 L 13.467 16.72 C 14.463 18.782 14.961 20.524 14.961 21.947 C 14.961 24.151 13.974 25.253 12 25.253 C 11.057 25.253 10.323 24.96 9.799 24.373 C 9.293 23.751 9.039 22.969 9.039 22.027 C 9.039 20.604 9.537 18.836 10.533 16.72 L 9.851 16.32 C 7.86 19.342 5.982 20.853 4.218 20.853 C 3.502 20.853 2.851 20.538 2.266 19.907 C 1.681 19.276 1.389 18.524 1.389 17.653 C 1.389 15.449 3.72 14.142 8.384 13.733 L 8.384 12.96 C 3.72 12.569 1.389 11.262 1.389 9.04 C 1.389 8.258 1.668 7.529 2.227 6.853 C 2.786 6.178 3.45 5.84 4.218 5.84 C 5.948 5.84 7.825 7.342 9.851 10.347 L 10.533 9.973 C 9.537 7.893 9.039 6.116 9.039 4.64 C 9.039 3.698 9.293 2.916 9.799 2.293 C 10.323 1.707 11.057 1.413 12 1.413 C 13.974 1.413 14.961 2.507 14.961 4.693 C 14.961 6.133 14.463 7.893 13.467 9.973 Z"/>
-        </svg>
-        <svg viewBox="0 0 24 27" fill="currentColor">
-          <path d="M 16.349 5.84 L 16.349 4.533 C 16.349 3.218 15.939 2.133 15.118 1.28 C 14.297 0.427 13.258 0 12 0 C 10.638 0 9.572 0.436 8.803 1.307 C 8.035 2.178 7.651 3.342 7.651 4.8 L 7.651 5.2 C 7.651 5.271 7.659 5.333 7.677 5.387 L 7.703 5.84 C 6.41 4.898 5.249 4.427 4.218 4.427 C 3.415 4.427 2.646 4.702 1.913 5.253 C 1.214 5.769 0.699 6.444 0.367 7.28 C 0.122 7.867 0 8.453 0 9.04 C 0 10.836 1.013 12.204 3.039 13.147 L 3.432 13.333 C 1.144 14.4 0 15.84 0 17.653 C 0 18.88 0.419 19.956 1.258 20.88 C 2.096 21.804 3.092 22.267 4.245 22.267 C 5.293 22.267 6.332 21.884 7.362 21.12 L 7.703 20.853 C 7.668 21.209 7.651 21.636 7.651 22.133 C 7.651 23.467 8.061 24.556 8.882 25.4 C 9.703 26.244 10.742 26.667 12 26.667 C 13.38 26.667 14.45 26.227 15.21 25.347 C 15.969 24.467 16.349 23.316 16.349 21.893 L 16.349 20.853 C 17.642 21.796 18.795 22.267 19.808 22.267 C 20.943 22.267 21.926 21.8 22.755 20.867 C 23.585 19.933 24 18.862 24 17.653 C 24 15.84 22.987 14.462 20.961 13.52 L 20.568 13.333 C 22.856 12.267 24 10.836 24 9.04 C 24 7.884 23.59 6.827 22.769 5.867 C 21.948 4.907 20.956 4.427 19.795 4.427 C 18.633 4.427 17.607 4.8 16.716 5.547 Z M 14.148 10.347 C 16.175 7.342 18.052 5.84 19.782 5.84 C 20.498 5.84 21.148 6.169 21.734 6.827 C 22.319 7.484 22.611 8.222 22.611 9.04 C 22.611 11.244 20.271 12.551 15.589 12.96 L 15.589 13.733 C 17.913 13.929 19.664 14.356 20.843 15.013 C 22.022 15.671 22.611 16.551 22.611 17.653 C 22.611 18.453 22.328 19.187 21.76 19.853 C 21.192 20.52 20.533 20.853 19.782 20.853 C 18.017 20.853 16.14 19.342 14.148 16.32 L 13.467 16.72 C 14.463 18.782 14.961 20.524 14.961 21.947 C 14.961 24.151 13.974 25.253 12 25.253 C 11.057 25.253 10.323 24.96 9.799 24.373 C 9.293 23.751 9.039 22.969 9.039 22.027 C 9.039 20.604 9.537 18.836 10.533 16.72 L 9.851 16.32 C 7.86 19.342 5.982 20.853 4.218 20.853 C 3.502 20.853 2.851 20.538 2.266 19.907 C 1.681 19.276 1.389 18.524 1.389 17.653 C 1.389 15.449 3.72 14.142 8.384 13.733 L 8.384 12.96 C 3.72 12.569 1.389 11.262 1.389 9.04 C 1.389 8.258 1.668 7.529 2.227 6.853 C 2.786 6.178 3.45 5.84 4.218 5.84 C 5.948 5.84 7.825 7.342 9.851 10.347 L 10.533 9.973 C 9.537 7.893 9.039 6.116 9.039 4.64 C 9.039 3.698 9.293 2.916 9.799 2.293 C 10.323 1.707 11.057 1.413 12 1.413 C 13.974 1.413 14.961 2.507 14.961 4.693 C 14.961 6.133 14.463 7.893 13.467 9.973 Z"/>
-        </svg>
-        <svg viewBox="0 0 24 27" fill="currentColor">
-          <path d="M 16.349 5.84 L 16.349 4.533 C 16.349 3.218 15.939 2.133 15.118 1.28 C 14.297 0.427 13.258 0 12 0 C 10.638 0 9.572 0.436 8.803 1.307 C 8.035 2.178 7.651 3.342 7.651 4.8 L 7.651 5.2 C 7.651 5.271 7.659 5.333 7.677 5.387 L 7.703 5.84 C 6.41 4.898 5.249 4.427 4.218 4.427 C 3.415 4.427 2.646 4.702 1.913 5.253 C 1.214 5.769 0.699 6.444 0.367 7.28 C 0.122 7.867 0 8.453 0 9.04 C 0 10.836 1.013 12.204 3.039 13.147 L 3.432 13.333 C 1.144 14.4 0 15.84 0 17.653 C 0 18.88 0.419 19.956 1.258 20.88 C 2.096 21.804 3.092 22.267 4.245 22.267 C 5.293 22.267 6.332 21.884 7.362 21.12 L 7.703 20.853 C 7.668 21.209 7.651 21.636 7.651 22.133 C 7.651 23.467 8.061 24.556 8.882 25.4 C 9.703 26.244 10.742 26.667 12 26.667 C 13.38 26.667 14.45 26.227 15.21 25.347 C 15.969 24.467 16.349 23.316 16.349 21.893 L 16.349 20.853 C 17.642 21.796 18.795 22.267 19.808 22.267 C 20.943 22.267 21.926 21.8 22.755 20.867 C 23.585 19.933 24 18.862 24 17.653 C 24 15.84 22.987 14.462 20.961 13.52 L 20.568 13.333 C 22.856 12.267 24 10.836 24 9.04 C 24 7.884 23.59 6.827 22.769 5.867 C 21.948 4.907 20.956 4.427 19.795 4.427 C 18.633 4.427 17.607 4.8 16.716 5.547 Z M 14.148 10.347 C 16.175 7.342 18.052 5.84 19.782 5.84 C 20.498 5.84 21.148 6.169 21.734 6.827 C 22.319 7.484 22.611 8.222 22.611 9.04 C 22.611 11.244 20.271 12.551 15.589 12.96 L 15.589 13.733 C 17.913 13.929 19.664 14.356 20.843 15.013 C 22.022 15.671 22.611 16.551 22.611 17.653 C 22.611 18.453 22.328 19.187 21.76 19.853 C 21.192 20.52 20.533 20.853 19.782 20.853 C 18.017 20.853 16.14 19.342 14.148 16.32 L 13.467 16.72 C 14.463 18.782 14.961 20.524 14.961 21.947 C 14.961 24.151 13.974 25.253 12 25.253 C 11.057 25.253 10.323 24.96 9.799 24.373 C 9.293 23.751 9.039 22.969 9.039 22.027 C 9.039 20.604 9.537 18.836 10.533 16.72 L 9.851 16.32 C 7.86 19.342 5.982 20.853 4.218 20.853 C 3.502 20.853 2.851 20.538 2.266 19.907 C 1.681 19.276 1.389 18.524 1.389 17.653 C 1.389 15.449 3.72 14.142 8.384 13.733 L 8.384 12.96 C 3.72 12.569 1.389 11.262 1.389 9.04 C 1.389 8.258 1.668 7.529 2.227 6.853 C 2.786 6.178 3.45 5.84 4.218 5.84 C 5.948 5.84 7.825 7.342 9.851 10.347 L 10.533 9.973 C 9.537 7.893 9.039 6.116 9.039 4.64 C 9.039 3.698 9.293 2.916 9.799 2.293 C 10.323 1.707 11.057 1.413 12 1.413 C 13.974 1.413 14.961 2.507 14.961 4.693 C 14.961 6.133 14.463 7.893 13.467 9.973 Z"/>
-        </svg>
+    <div class="hero-content">
+      <div class="hero-tagline">Karaoke Bar — Barcelona</div>
+      <div class="hero-sub">Sing your heart out.<br>We won't judge.</div>
+      <div class="hero-cta">
+        <a href="#reserve" class="btn btn-primary">Book a Room</a>
+        <a href="#rooms" class="btn btn-outline">See Our Rooms</a>
       </div>
-      <h1>Sing, sip, and savor</h1>
-      <p>Grita transforms karaoke into an immersive night of rhythm, laughter, and unforgettable moments.</p>
+    </div>
+    <div class="hero-video-wrapper">
+      <img src="assets/videos/kido.gif" alt="" class="hero-gif" id="heroGif">
+      <canvas class="hero-canvas" id="heroCanvas"></canvas>
+      <div class="hero-video-overlay"></div>
     </div>
   </section>
-
-  <!-- Image Carousel Section -->
-  <section class="carousel-section">
-    <div class="carousel-header fade-in">
-      <h2>Sing, sip, and savor</h2>
-      <p>Grita transforms karaoke into an immersive night of rhythm, laughter, and unforgettable moments.</p>
+  
+  <section class="section" id="rooms">
+    <div class="section-header">
+      <div class="section-number">01</div>
+      <div class="section-title">Private Rooms</div>
+      <div class="section-link"><a href="#reserve">Book Now →</a></div>
     </div>
-    
-    <div class="carousel-container">
-      <div class="carousel-fade-top"></div>
-      <div class="carousel-fade-bottom"></div>
-      <div class="carousel-fade-left"></div>
-      <div class="carousel-fade-right"></div>
-      
-      <div class="carousel-track">
-        <div class="carousel-item"><img src="assets/images/room-1.webp" alt="Karaoke room"></div>
-        <div class="carousel-item"><img src="assets/images/room-2.jpg" alt="Grita storefront"></div>
-        <div class="carousel-item"><img src="assets/images/cocktail.png" alt="Cocktail"></div>
-        <!-- Duplicate for seamless loop -->
-        <div class="carousel-item"><img src="assets/images/room-1.webp" alt="Karaoke room"></div>
-        <div class="carousel-item"><img src="assets/images/room-2.jpg" alt="Grita storefront"></div>
-        <div class="carousel-item"><img src="assets/images/cocktail.png" alt="Cocktail"></div>
-        <div class="carousel-item"><img src="assets/images/room-1.webp" alt="Karaoke room"></div>
-        <div class="carousel-item"><img src="assets/images/room-2.jpg" alt="Grita storefront"></div>
-        <div class="carousel-item"><img src="assets/images/cocktail.png" alt="Cocktail"></div>
-      </div>
-      
-      <a href="menu.html" class="explore-btn">EXPLORE MENU</a>
-      
-      <div class="carousel-track reverse" style="margin-top: 16px;">
-        <div class="carousel-item"><img src="assets/images/food-1.webp" alt="Food"></div>
-        <div class="carousel-item"><img src="assets/images/food-2.jpg" alt="Food"></div>
-        <div class="carousel-item"><img src="assets/images/food-3.png" alt="Food"></div>
-        <!-- Duplicate for seamless loop -->
-        <div class="carousel-item"><img src="assets/images/food-1.webp" alt="Food"></div>
-        <div class="carousel-item"><img src="assets/images/food-2.jpg" alt="Food"></div>
-        <div class="carousel-item"><img src="assets/images/food-3.png" alt="Food"></div>
-        <div class="carousel-item"><img src="assets/images/food-1.webp" alt="Food"></div>
-        <div class="carousel-item"><img src="assets/images/food-2.jpg" alt="Food"></div>
-        <div class="carousel-item"><img src="assets/images/food-3.png" alt="Food"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Own The Mic Section -->
-  <section class="mic-section">
-    <div class="carousel-header fade-in">
-      <h2>OWN THE MIC</h2>
-      <p>Step into your private stage.</p>
-    </div>
-    <div class="mic-image slide-in-right">
-      <img src="assets/images/room-wide.png" alt="Karaoke room interior">
-    </div>
-  </section>
-
-  <!-- Reserve Section -->
-  <section class="reserve-section">
-    <h2 class="fade-in">RESERVE YOUR ROOM</h2>
-    
-    <div class="reserve-grid">
-      <div class="reserve-col">
-        <div class="map-container">
-          <iframe src="https://maps.google.com/maps?q=87%20Carrer%20Aribau%20Barcelona&z=15&output=embed" allowfullscreen></iframe>
+    <div class="rooms-grid">
+      <!-- Row 1: 3 rooms -->
+      <div class="rooms-row rooms-row-3">
+        <div class="room-card">
+          <img src="assets/images/room-1.webp" alt="The Booth" class="room-image">
+          <div class="room-info">
+            <div class="room-name">The Booth</div>
+            <div class="room-capacity">2–4 Guests</div>
+            <p class="room-desc">Intimate and cozy. Perfect for date nights or a spontaneous sing-off with your closest friends.</p>
+          </div>
         </div>
-        <div class="info-box">
-          <h3>Location</h3>
-          <p>Carrer D'Aribau 87<br>Barcelona, Spain</p>
+        <div class="room-card">
+          <img src="assets/images/room-2.jpg" alt="The Lounge" class="room-image">
+          <div class="room-info">
+            <div class="room-name">The Lounge</div>
+            <div class="room-capacity">4–6 Guests</div>
+            <p class="room-desc">Our signature room. Plush velvet seating, mood lighting, and a sound system that makes everyone sound good.</p>
+          </div>
+        </div>
+        <div class="room-card">
+          <img src="assets/images/room-3.jpg" alt="The Stage" class="room-image">
+          <div class="room-info">
+            <div class="room-name">The Stage</div>
+            <div class="room-capacity">6–10 Guests</div>
+            <p class="room-desc">Born to perform? This is your room. Elevated stage, dual mics, and lighting that follows the beat.</p>
+          </div>
         </div>
       </div>
-      <div class="reserve-col">
-        <div class="reserve-image">
-          <img src="assets/images/room-2.jpg" alt="Karaoke room">
+      <!-- Row 2: 2 rooms, full width 50/50 -->
+      <div class="rooms-row rooms-row-2">
+        <div class="room-card">
+          <img src="assets/images/room-4.jpg" alt="The Suite" class="room-image">
+          <div class="room-info">
+            <div class="room-name">The Suite</div>
+            <div class="room-capacity">10–15 Guests</div>
+            <p class="room-desc">Birthday parties, bachelor nights, office chaos. Space for everyone with bottle service available.</p>
+          </div>
         </div>
-        <div class="info-box">
-          <h3>Hours</h3>
-          <p>Monday to Sunday<br>1pm to 3am</p>
+        <div class="room-card">
+          <img src="assets/images/room-5.jpg" alt="The Penthouse" class="room-image">
+          <div class="room-info">
+            <div class="room-name">The Penthouse</div>
+            <div class="room-capacity">15–25 Guests</div>
+            <p class="room-desc">The crown jewel. Full bar, private terrace, three screens, and a vibe that's pure celebration.</p>
+          </div>
         </div>
       </div>
     </div>
-    
-    <a href="contact.html" class="reserve-btn fade-in">RESERVE</a>
-    
-    <p class="reserve-note fade-in">
-      Reserve online or send an email to <a href="mailto:info@gritatkaraoke.com">info@gritatkaraoke.com</a>
-    </p>
   </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-logo fade-in">
-      <img src="assets/images/logo.svg" alt="Grita Karaoke">
+  
+  <section class="section" id="drinks">
+    <div class="section-header">
+      <div class="section-number">02</div>
+      <div class="section-title">Drinks & Bites</div>
     </div>
-    <div class="footer-content">
-      <ul class="footer-links">
-        <li><a href="menu.html">MENU</a></li>
-        <li><a href="about.html">ABOUT</a></li>
-        <li><a href="contact.html">CONTACT</a></li>
-      </ul>
-      <p class="footer-copyright">© Grita Karaoke</p>
+    <div class="drinks-layout">
+      <div class="drinks-col">
+        <div class="drinks-category">Signature Cocktails</div>
+        <div class="drink-item">
+          <span class="drink-name">Grita Sour</span>
+          <span class="drink-price">€12</span>
+        </div>
+        <p class="drink-desc">Whisky, yuzu, egg white, bitters — our bestseller</p>
+        
+        <div class="drink-item">
+          <span class="drink-name">Tokyo Mule</span>
+          <span class="drink-price">€11</span>
+        </div>
+        <p class="drink-desc">Shochu, ginger, lime, sparkling</p>
+        
+        <div class="drink-item">
+          <span class="drink-name">Sakura Spritz</span>
+          <span class="drink-price">€10</span>
+        </div>
+        <p class="drink-desc">Sake, elderflower, prosecco, cherry blossom</p>
+        
+        <div class="drink-item">
+          <span class="drink-name">Neon Nights</span>
+          <span class="drink-price">€13</span>
+        </div>
+        <p class="drink-desc">Gin, butterfly pea, tonic, lime — changes color</p>
+        
+        <div class="drinks-category" style="margin-top: 50px;">Wine & Beer</div>
+        <div class="drink-item">
+          <span class="drink-name">House Red / White</span>
+          <span class="drink-price">€6</span>
+        </div>
+        <div class="drink-item">
+          <span class="drink-name">Cava</span>
+          <span class="drink-price">€7</span>
+        </div>
+        <div class="drink-item">
+          <span class="drink-name">Asahi / Sapporo</span>
+          <span class="drink-price">€5</span>
+        </div>
+      </div>
+      <div class="drinks-col">
+        <div class="drinks-category">Sake & Japanese Whisky</div>
+        <div class="drink-item">
+          <span class="drink-name">Sake Flight</span>
+          <span class="drink-price">€18</span>
+        </div>
+        <p class="drink-desc">Three premium selections, served chilled</p>
+        
+        <div class="drink-item">
+          <span class="drink-name">Hibiki Harmony</span>
+          <span class="drink-price">€16</span>
+        </div>
+        <p class="drink-desc">Japanese blended whisky, neat or highball</p>
+        
+        <div class="drink-item">
+          <span class="drink-name">Yamazaki 12</span>
+          <span class="drink-price">€22</span>
+        </div>
+        <p class="drink-desc">Single malt, notes of peach and vanilla</p>
+        
+        <div class="drinks-category" style="margin-top: 50px;">Small Plates</div>
+        <div class="drink-item">
+          <span class="drink-name">Edamame</span>
+          <span class="drink-price">€5</span>
+        </div>
+        <div class="drink-item">
+          <span class="drink-name">Gyoza (6pc)</span>
+          <span class="drink-price">€9</span>
+        </div>
+        <div class="drink-item">
+          <span class="drink-name">Karaage Chicken</span>
+          <span class="drink-price">€11</span>
+        </div>
+        <div class="drink-item">
+          <span class="drink-name">Takoyaki (6pc)</span>
+          <span class="drink-price">€8</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="section" id="about">
+    <div class="section-header">
+      <div class="section-number">03</div>
+      <div class="section-title">About</div>
+    </div>
+    <div class="about-layout">
+      <div class="about-text">
+        <p>Grita was born from a simple idea: karaoke should feel like an escape. Not a tourist trap. Not a cramped afterthought. A destination.</p>
+        <p>Tucked into the heart of Barcelona's Gràcia neighborhood, we've created intimate private rooms where you can sing your heart out—or watch your friends embarrass themselves—while sipping proper cocktails and Japanese whisky.</p>
+        <p>Every room features a curated library of over 50,000 songs spanning decades and languages. Premium sound. Moody lighting. And a bar menu designed to fuel the best nights you'll barely remember.</p>
+      </div>
+      <div class="about-image"></div>
+    </div>
+  </section>
+  
+  <section class="reserve-cta" id="reserve">
+    <div class="reserve-left">
+      <h2>Book Your Room</h2>
+      <p>Walk-ins welcome, but weekends fill fast. Reserve your private room and we'll have everything ready when you arrive.</p>
+    </div>
+    <div class="reserve-right">
+      <a href="#" class="btn btn-primary">Make a Reservation</a>
+    </div>
+  </section>
+  
+  <footer>
+    <div>
+      <div class="footer-logo">GRITA</div>
+      <div class="footer-address">
+        Carrer de Verdi, 45<br>
+        08012 Barcelona<br>
+        Gràcia
+      </div>
+    </div>
+    <div class="footer-center">
+      <p style="color: var(--gray);">© 2024 Grita Karaoke Bar</p>
+      <p style="margin-top: 10px;"><a href="#">Privacy</a> · <a href="#">Terms</a></p>
+    </div>
+    <div class="footer-right">
+      <div class="footer-social">
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+      </div>
+      <div class="footer-hours">
+        Tue – Thu: 7pm – 1am<br>
+        Fri – Sat: 7pm – 2am<br>
+        Sun: 6pm – 12am<br>
+        Mon: Closed
+      </div>
     </div>
   </footer>
-
-  <script src="js/main.js"></script>
+  <script>
+    // Play GIF once, then freeze on last frame
+    (function() {
+      const gif = document.getElementById('heroGif');
+      const canvas = document.getElementById('heroCanvas');
+      const ctx = canvas.getContext('2d');
+      const gifDuration = 2400; // slightly before loop restarts
+      
+      gif.onload = function() {
+        // After GIF plays once, capture current frame and swap
+        setTimeout(() => {
+          canvas.width = gif.naturalWidth;
+          canvas.height = gif.naturalHeight;
+          ctx.drawImage(gif, 0, 0);
+          canvas.style.display = 'block';
+          gif.style.display = 'none';
+        }, gifDuration);
+      };
+      
+      // If already loaded (cached)
+      if (gif.complete) {
+        setTimeout(() => {
+          canvas.width = gif.naturalWidth;
+          canvas.height = gif.naturalHeight;
+          ctx.drawImage(gif, 0, 0);
+          canvas.style.display = 'block';
+          gif.style.display = 'none';
+        }, gifDuration);
+      }
+    })();
+  </script>
 </body>
 </html>

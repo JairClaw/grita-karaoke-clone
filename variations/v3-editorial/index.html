@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GRITA — Karaoke Bar Barcelona</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=Josefin+Sans:wght@100;200;300&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --gold: #d4af37;
+      --gold-muted: rgba(212, 175, 55, 0.3);
+      --black: #0a0a0a;
+      --white: #fafafa;
+      --gray: #888;
+      --dark: #111;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 25px 60px;
+      background: rgba(10, 10, 10, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--gold-muted);
+    }
+    .nav-left, .nav-right {
+      display: flex;
+      gap: 40px;
+    }
+    .nav-right { justify-content: flex-end; }
+    header a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    header a:hover { color: var(--gold); }
+    .logo {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 200;
+      color: var(--gold);
+      letter-spacing: 8px;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .logo span {
+      opacity: 0.4;
+      margin: 0 12px;
+      font-weight: 100;
+    }
+    
+    /* HERO - SPLIT LAYOUT: 1/3 TEXT | 2/3 VIDEO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      padding-top: 80px;
+    }
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px;
+      background: var(--black);
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+    }
+    .hero h1 span {
+      opacity: 0.5;
+      margin: 0 15px;
+    }
+    .hero-tagline {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-top: 30px;
+      color: var(--gray);
+    }
+    .hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-style: italic;
+      margin-top: 20px;
+      color: var(--white);
+      opacity: 0.8;
+      line-height: 1.5;
+    }
+    .hero-cta {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .hero-video-wrapper {
+      position: relative;
+      overflow: hidden;
+      background: var(--black);
+    }
+    .hero-video, .hero-gif, .hero-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-canvas {
+      display: none;
+    }
+    .hero-video-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(10, 10, 10, 0.3) 0%,
+        transparent 40%
+      );
+      pointer-events: none;
+    }
+    .btn {
+      padding: 16px 40px;
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--black);
+    }
+    .btn-primary:hover {
+      background: var(--white);
+    }
+    .btn-outline {
+      border: 1px solid var(--gold);
+      color: var(--gold);
+    }
+    .btn-outline:hover {
+      background: var(--gold);
+      color: var(--black);
+    }
+    
+    /* SECTIONS */
+    .section {
+      border-top: 1px solid var(--gold-muted);
+    }
+    .section-header {
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      border-bottom: 1px solid var(--gold-muted);
+    }
+    .section-number {
+      padding: 30px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      color: var(--gold);
+      border-right: 1px solid var(--gold-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .section-title {
+      padding: 30px 40px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      display: flex;
+      align-items: center;
+    }
+    .section-link {
+      padding: 30px 40px;
+      display: flex;
+      align-items: center;
+    }
+    .section-link a {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    
+    /* ROOMS - 5 CARDS: 3 + 2 FULL WIDTH, NO GAPS */
+    .rooms-grid {
+      display: grid;
+    }
+    .rooms-row {
+      display: grid;
+    }
+    .rooms-row-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .rooms-row-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .room-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--dark);
+      border-right: 1px solid var(--gold-muted);
+    }
+    .rooms-row-3 .room-card:last-child,
+    .rooms-row-2 .room-card:last-child {
+      border-right: none;
+    }
+    .rooms-row-3 {
+      border-bottom: 1px solid var(--gold-muted);
+    }
+    .room-image {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s, opacity 0.3s;
+    }
+    .room-card:hover .room-image {
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
+    .room-info {
+      padding: 30px;
+      border-top: 1px solid var(--gold-muted);
+    }
+    .room-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      color: var(--gold);
+      margin-bottom: 5px;
+    }
+    .room-capacity {
+      font-size: 11px;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
+    .room-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.8);
+    }
+    
+    /* DRINKS SECTION */
+    .drinks-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .drinks-col {
+      padding: 60px;
+      border-right: 1px solid var(--gold-muted);
+    }
+    .drinks-col:last-child { border-right: none; }
+    .drinks-category {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--gold-muted);
+    }
+    .drink-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+    .drink-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+    }
+    .drink-price {
+      color: var(--gold);
+      font-size: 14px;
+    }
+    .drink-desc {
+      font-size: 12px;
+      color: var(--gray);
+      margin-bottom: 25px;
+    }
+    
+    /* ABOUT SECTION */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .about-text {
+      padding: 80px 60px;
+      border-right: 1px solid var(--gold-muted);
+    }
+    .about-text p {
+      font-size: 16px;
+      line-height: 1.9;
+      margin-bottom: 25px;
+    }
+    .about-text p:first-child::first-letter {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px;
+      float: left;
+      line-height: 0.8;
+      margin-right: 15px;
+      color: var(--gold);
+    }
+    .about-image {
+      background: url('assets/images/room-2.jpg') center/cover;
+      min-height: 400px;
+    }
+    
+    /* RESERVE CTA */
+    .reserve-cta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--gold-muted);
+    }
+    .reserve-left {
+      padding: 100px 60px;
+      border-right: 1px solid var(--gold-muted);
+    }
+    .reserve-left h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 400;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .reserve-left p {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.8;
+      max-width: 400px;
+    }
+    .reserve-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px;
+    }
+    
+    /* FOOTER */
+    footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      padding: 60px;
+      border-top: 1px solid var(--gold-muted);
+      font-size: 12px;
+    }
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .footer-center { text-align: center; }
+    .footer-right { text-align: right; }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      color: var(--gold);
+      letter-spacing: 6px;
+    }
+    .footer-address {
+      margin-top: 15px;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+    .footer-social {
+      display: flex;
+      gap: 30px;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+    .footer-hours {
+      color: var(--gray);
+      line-height: 1.7;
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      header { padding: 20px 30px; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-content { 
+        padding: 40px 30px; 
+        border-right: none; 
+        border-bottom: 1px solid var(--gold-muted);
+        text-align: center;
+        align-items: center;
+      }
+      .hero-cta { flex-direction: row; justify-content: center; }
+      .hero-video-wrapper { min-height: 50vh; }
+      .hero h1 { font-size: 64px; }
+      .section-header { grid-template-columns: 60px 1fr; }
+      .section-number { padding: 15px; font-size: 24px; }
+      .rooms-row-3, .rooms-row-2 { grid-template-columns: 1fr; }
+      .room-card { border-right: none; border-bottom: 1px solid var(--gold-muted); }
+      .drinks-layout, .about-layout, .reserve-cta { grid-template-columns: 1fr; }
+      .drinks-col, .about-text { border-right: none; border-bottom: 1px solid var(--gold-muted); }
+      footer { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+      .footer-right { text-align: center; }
+      .footer-social { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav-left">
+      <a href="#rooms">Rooms</a>
+      <a href="#drinks">Drinks</a>
+    </nav>
+    <a href="#" class="logo">GRITA<span>|</span>KARAOKE</a>
+    <nav class="nav-right">
+      <a href="#about">About</a>
+      <a href="#reserve">Reserve</a>
+    </nav>
+  </header>
+  
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-tagline">Karaoke Bar — Barcelona</div>
+      <div class="hero-sub">Sing your heart out.<br>We won't judge.</div>
+      <div class="hero-cta">
+        <a href="#reserve" class="btn btn-primary">Book a Room</a>
+        <a href="#rooms" class="btn btn-outline">See Our Rooms</a>
+      </div>
+    </div>
+    <div class="hero-video-wrapper">
+      <img src="assets/videos/kido.gif" alt="" class="hero-gif" id="heroGif">
+      <canvas class="hero-canvas" id="heroCanvas"></canvas>
+      <div class="hero-video-overlay"></div>
+    </div>
+  </section>
+  
+  <section class="section" id="rooms">
+    <div class="section-header">
+      <div class="section-number">01</div>
+      <div class="section-title">Private Rooms</div>
+      <div class="section-link"><a href="#reserve">Book Now →</a></div>
+    </div>
+    <div class="rooms-grid">
+      <!-- Row 1: 3 rooms -->
+      <div class="rooms-row rooms-row-3">
+        <div class="room-card">
+          <img src="assets/images/room-1.webp" alt="The Booth" class="room-image">
+          <div class="room-info">
+            <div class="room-name">The Booth</div>
+            <div class="room-capacity">2–4 Guests</div>
+            <p class="room-desc">Intimate and cozy. Perfect for date nights or a spontaneous sing-off with your closest friends.</p>
+          </div>
+        </div>
+        <div class="room-card">
+          <img src="assets/images/room-2.jpg" alt="The Lounge" class="room-image">
+          <div class="room-info">
+            <div class="room-name">The Lounge</div>
+            <div class="room-capacity">4–6 Guests</div>
+            <p class="room-desc">Our signature room. Plush velvet seating, mood lighting, and a sound system that makes everyone sound good.</p>
+          </div>
+        </div>
+        <div class="room-card">
+          <img src="assets/images/room-3.jpg" alt="The Stage" class="room-image">
+          <div class="room-info">
+            <div class="room-name">The Stage</div>
+            <div class="room-capacity">6–10 Guests</div>
+            <p class="room-desc">Born to perform? This is your room. Elevated stage, dual mics, and lighting that follows the beat.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Row 2: 2 rooms, full width 50/50 -->
+      <div class="rooms-row rooms-row-2">
+        <div class="room-card">
+          <img src="assets/images/room-4.jpg" alt="The Suite" class="room-image">
+          <div class="room-info">
+            <div class="room-name">The Suite</div>
+            <div class="room-capacity">10–15 Guests</div>
+            <p class="room-desc">Birthday parties, bachelor nights, office chaos. Space for everyone with bottle service available.</p>
+          </div>
+        </div>
+        <div class="room-card">
+          <img src="assets/images/room-5.jpg" alt="The Penthouse" class="room-image">
+          <div class="room-info">
+            <div class="room-name">The Penthouse</div>
+            <div class="room-capacity">15–25 Guests</div>
+            <p class="room-desc">The crown jewel. Full bar, private terrace, three screens, and a vibe that's pure celebration.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="section" id="drinks">
+    <div class="section-header">
+      <div class="section-number">02</div>
+      <div class="section-title">Drinks & Bites</div>
+    </div>
+    <div class="drinks-layout">
+      <div class="drinks-col">
+        <div class="drinks-category">Signature Cocktails</div>
+        <div class="drink-item">
+          <span class="drink-name">Grita Sour</span>
+          <span class="drink-price">€12</span>
+        </div>
+        <p class="drink-desc">Whisky, yuzu, egg white, bitters — our bestseller</p>
+        
+        <div class="drink-item">
+          <span class="drink-name">Tokyo Mule</span>
+          <span class="drink-price">€11</span>
+        </div>
+        <p class="drink-desc">Shochu, ginger, lime, sparkling</p>
+        
+        <div class="drink-item">
+          <span class="drink-name">Sakura Spritz</span>
+          <span class="drink-price">€10</span>
+        </div>
+        <p class="drink-desc">Sake, elderflower, prosecco, cherry blossom</p>
+        
+        <div class="drink-item">
+          <span class="drink-name">Neon Nights</span>
+          <span class="drink-price">€13</span>
+        </div>
+        <p class="drink-desc">Gin, butterfly pea, tonic, lime — changes color</p>
+        
+        <div class="drinks-category" style="margin-top: 50px;">Wine & Beer</div>
+        <div class="drink-item">
+          <span class="drink-name">House Red / White</span>
+          <span class="drink-price">€6</span>
+        </div>
+        <div class="drink-item">
+          <span class="drink-name">Cava</span>
+          <span class="drink-price">€7</span>
+        </div>
+        <div class="drink-item">
+          <span class="drink-name">Asahi / Sapporo</span>
+          <span class="drink-price">€5</span>
+        </div>
+      </div>
+      <div class="drinks-col">
+        <div class="drinks-category">Sake & Japanese Whisky</div>
+        <div class="drink-item">
+          <span class="drink-name">Sake Flight</span>
+          <span class="drink-price">€18</span>
+        </div>
+        <p class="drink-desc">Three premium selections, served chilled</p>
+        
+        <div class="drink-item">
+          <span class="drink-name">Hibiki Harmony</span>
+          <span class="drink-price">€16</span>
+        </div>
+        <p class="drink-desc">Japanese blended whisky, neat or highball</p>
+        
+        <div class="drink-item">
+          <span class="drink-name">Yamazaki 12</span>
+          <span class="drink-price">€22</span>
+        </div>
+        <p class="drink-desc">Single malt, notes of peach and vanilla</p>
+        
+        <div class="drinks-category" style="margin-top: 50px;">Small Plates</div>
+        <div class="drink-item">
+          <span class="drink-name">Edamame</span>
+          <span class="drink-price">€5</span>
+        </div>
+        <div class="drink-item">
+          <span class="drink-name">Gyoza (6pc)</span>
+          <span class="drink-price">€9</span>
+        </div>
+        <div class="drink-item">
+          <span class="drink-name">Karaage Chicken</span>
+          <span class="drink-price">€11</span>
+        </div>
+        <div class="drink-item">
+          <span class="drink-name">Takoyaki (6pc)</span>
+          <span class="drink-price">€8</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="section" id="about">
+    <div class="section-header">
+      <div class="section-number">03</div>
+      <div class="section-title">About</div>
+    </div>
+    <div class="about-layout">
+      <div class="about-text">
+        <p>Grita was born from a simple idea: karaoke should feel like an escape. Not a tourist trap. Not a cramped afterthought. A destination.</p>
+        <p>Tucked into the heart of Barcelona's Gràcia neighborhood, we've created intimate private rooms where you can sing your heart out—or watch your friends embarrass themselves—while sipping proper cocktails and Japanese whisky.</p>
+        <p>Every room features a curated library of over 50,000 songs spanning decades and languages. Premium sound. Moody lighting. And a bar menu designed to fuel the best nights you'll barely remember.</p>
+      </div>
+      <div class="about-image"></div>
+    </div>
+  </section>
+  
+  <section class="reserve-cta" id="reserve">
+    <div class="reserve-left">
+      <h2>Book Your Room</h2>
+      <p>Walk-ins welcome, but weekends fill fast. Reserve your private room and we'll have everything ready when you arrive.</p>
+    </div>
+    <div class="reserve-right">
+      <a href="#" class="btn btn-primary">Make a Reservation</a>
+    </div>
+  </section>
+  
+  <footer>
+    <div>
+      <div class="footer-logo">GRITA</div>
+      <div class="footer-address">
+        Carrer de Verdi, 45<br>
+        08012 Barcelona<br>
+        Gràcia
+      </div>
+    </div>
+    <div class="footer-center">
+      <p style="color: var(--gray);">© 2024 Grita Karaoke Bar</p>
+      <p style="margin-top: 10px;"><a href="#">Privacy</a> · <a href="#">Terms</a></p>
+    </div>
+    <div class="footer-right">
+      <div class="footer-social">
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+      </div>
+      <div class="footer-hours">
+        Tue – Thu: 7pm – 1am<br>
+        Fri – Sat: 7pm – 2am<br>
+        Sun: 6pm – 12am<br>
+        Mon: Closed
+      </div>
+    </div>
+  </footer>
+  <script>
+    // Play GIF once, then freeze on last frame
+    (function() {
+      const gif = document.getElementById('heroGif');
+      const canvas = document.getElementById('heroCanvas');
+      const ctx = canvas.getContext('2d');
+      const gifDuration = 2400; // slightly before loop restarts
+      
+      gif.onload = function() {
+        // After GIF plays once, capture current frame and swap
+        setTimeout(() => {
+          canvas.width = gif.naturalWidth;
+          canvas.height = gif.naturalHeight;
+          ctx.drawImage(gif, 0, 0);
+          canvas.style.display = 'block';
+          gif.style.display = 'none';
+        }, gifDuration);
+      };
+      
+      // If already loaded (cached)
+      if (gif.complete) {
+        setTimeout(() => {
+          canvas.width = gif.naturalWidth;
+          canvas.height = gif.naturalHeight;
+          ctx.drawImage(gif, 0, 0);
+          canvas.style.display = 'block';
+          gif.style.display = 'none';
+        }, gifDuration);
+      }
+    })();
+  </script>
+</body>
+</html>
