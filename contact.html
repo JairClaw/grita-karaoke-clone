@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reserve - Grita Karaoke</title>
+  <meta name="description" content="Reserve your private karaoke room at Grita Karaoke in Barcelona.">
+  
+  <!-- Favicon -->
+  <link href="assets/images/favicon-light.png" rel="icon" media="(prefers-color-scheme: light)">
+  <link href="assets/images/favicon-dark.png" rel="icon" media="(prefers-color-scheme: dark)">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Forum&family=Inter+Display:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .contact-hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 20px 80px;
+      text-align: center;
+    }
+    
+    .contact-hero h1 {
+      font-size: 100px;
+      line-height: 96px;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+    
+    .contact-hero p {
+      font-size: 22px;
+      line-height: 34px;
+      color: var(--color-text-secondary);
+      max-width: 600px;
+      margin-bottom: 60px;
+    }
+    
+    .contact-form {
+      width: 100%;
+      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .form-row {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .form-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .form-group label {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: var(--color-text-secondary);
+      text-transform: uppercase;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: transparent;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 16px;
+      color: var(--color-text-primary);
+      font-family: var(--font-body);
+      font-size: 16px;
+      transition: border-color var(--transition);
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--color-accent);
+    }
+    
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--color-text-secondary);
+    }
+    
+    .form-group select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2373747d' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+    }
+    
+    .form-group select option {
+      background: var(--color-bg);
+      color: var(--color-text-primary);
+    }
+    
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    
+    .submit-btn {
+      background: var(--color-accent);
+      color: var(--color-bg);
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 16px 40px;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 20px;
+    }
+    
+    .submit-btn:hover {
+      filter: brightness(0.9);
+    }
+    
+    .contact-info {
+      padding: 80px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 80px;
+      flex-wrap: wrap;
+    }
+    
+    .contact-info-item {
+      text-align: center;
+    }
+    
+    .contact-info-item h3 {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--color-text-primary);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    
+    .contact-info-item p,
+    .contact-info-item a {
+      font-size: 18px;
+      line-height: 28px;
+      color: var(--color-text-secondary);
+    }
+    
+    .contact-info-item a:hover {
+      color: var(--color-text-primary);
+    }
+    
+    .large-map {
+      width: 100%;
+      height: 400px;
+    }
+    
+    .large-map iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      filter: grayscale(1) invert(1);
+      opacity: 0.7;
+    }
+    
+    @media (max-width: 809px) {
+      .contact-hero h1 {
+        font-size: 64px;
+        line-height: 68px;
+      }
+      
+      .contact-hero p {
+        font-size: 18px;
+        line-height: 28px;
+      }
+      
+      .form-row {
+        flex-direction: column;
+      }
+      
+      .contact-info {
+        gap: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-wrapper">
+      <a href="index.html" class="nav-logo">
+        <span>G R I T A</span>
+        <span>|</span>
+        <span>K A R A O K E</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="menu.html">MENU</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="contact.html" class="active">RESERVE</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Contact Hero -->
+  <section class="contact-hero">
+    <h1 class="fade-in">RESERVE</h1>
+    <p class="fade-in">Book your private karaoke room and get ready for an unforgettable night.</p>
+    
+    <form class="contact-form fade-in" action="#" method="POST">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input type="date" id="date" name="date" required>
+        </div>
+        <div class="form-group">
+          <label for="time">Time</label>
+          <select id="time" name="time" required>
+            <option value="">Select time</option>
+            <option value="13:00">1:00 PM</option>
+            <option value="14:00">2:00 PM</option>
+            <option value="15:00">3:00 PM</option>
+            <option value="16:00">4:00 PM</option>
+            <option value="17:00">5:00 PM</option>
+            <option value="18:00">6:00 PM</option>
+            <option value="19:00">7:00 PM</option>
+            <option value="20:00">8:00 PM</option>
+            <option value="21:00">9:00 PM</option>
+            <option value="22:00">10:00 PM</option>
+            <option value="23:00">11:00 PM</option>
+            <option value="00:00">12:00 AM</option>
+            <option value="01:00">1:00 AM</option>
+            <option value="02:00">2:00 AM</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="guests">Number of Guests</label>
+          <select id="guests" name="guests" required>
+            <option value="">Select</option>
+            <option value="2-4">2-4 guests</option>
+            <option value="5-8">5-8 guests</option>
+            <option value="9-12">9-12 guests</option>
+            <option value="13+">13+ guests</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="room">Room Preference</label>
+          <select id="room" name="room">
+            <option value="">No preference</option>
+            <option value="small">Small Room (2-4)</option>
+            <option value="medium">Medium Room (5-8)</option>
+            <option value="large">Large Room (9-12)</option>
+            <option value="vip">VIP Suite (13+)</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="message">Special Requests</label>
+        <textarea id="message" name="message" placeholder="Any special requests or occasions?"></textarea>
+      </div>
+      
+      <button type="submit" class="submit-btn">Request Reservation</button>
+    </form>
+  </section>
+
+  <!-- Contact Info -->
+  <div class="contact-info">
+    <div class="contact-info-item fade-in">
+      <h3>Location</h3>
+      <p>Carrer D'Aribau 87<br>Barcelona, Spain</p>
+    </div>
+    <div class="contact-info-item fade-in">
+      <h3>Hours</h3>
+      <p>Monday to Sunday<br>1pm to 3am</p>
+    </div>
+    <div class="contact-info-item fade-in">
+      <h3>Contact</h3>
+      <p><a href="mailto:info@gritakaraoke.com">info@gritakaraoke.com</a></p>
+    </div>
+  </div>
+
+  <!-- Large Map -->
+  <div class="large-map">
+    <iframe src="https://maps.google.com/maps?q=87%20Carrer%20Aribau%20Barcelona&z=15&output=embed" allowfullscreen></iframe>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-logo fade-in">
+      <img src="assets/images/logo.svg" alt="Grita Karaoke">
+    </div>
+    <div class="footer-content">
+      <ul class="footer-links">
+        <li><a href="menu.html">MENU</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
+      <p class="footer-copyright">© Grita Karaoke</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

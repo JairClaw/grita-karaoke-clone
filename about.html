@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Grita Karaoke</title>
+  <meta name="description" content="Learn about Grita Karaoke - where every song becomes a story.">
+  
+  <!-- Favicon -->
+  <link href="assets/images/favicon-light.png" rel="icon" media="(prefers-color-scheme: light)">
+  <link href="assets/images/favicon-dark.png" rel="icon" media="(prefers-color-scheme: dark)">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Forum&family=Inter+Display:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .about-hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 20px 80px;
+      text-align: center;
+    }
+    
+    .about-hero h1 {
+      font-size: 100px;
+      line-height: 96px;
+      letter-spacing: -0.03em;
+      margin-bottom: 40px;
+    }
+    
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    
+    .about-content p {
+      font-size: 22px;
+      line-height: 34px;
+      color: var(--color-text-secondary);
+    }
+    
+    .about-highlight {
+      color: var(--color-text-primary);
+    }
+    
+    .about-images {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 80px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .about-images img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+    
+    .about-values {
+      padding: 80px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 60px;
+    }
+    
+    .about-values h2 {
+      font-size: 64px;
+      line-height: 68px;
+      letter-spacing: -0.03em;
+    }
+    
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 1000px;
+    }
+    
+    .value-card {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    
+    .value-card h3 {
+      font-family: var(--font-body);
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--color-text-primary);
+      margin-bottom: 16px;
+    }
+    
+    .value-card p {
+      font-size: 16px;
+      line-height: 24px;
+      color: var(--color-text-secondary);
+    }
+    
+    @media (max-width: 809px) {
+      .about-hero h1 {
+        font-size: 64px;
+        line-height: 68px;
+      }
+      
+      .about-content p {
+        font-size: 18px;
+        line-height: 28px;
+      }
+      
+      .about-images {
+        grid-template-columns: 1fr;
+        padding: 40px 20px;
+      }
+      
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .about-values h2 {
+        font-size: 48px;
+        line-height: 52px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-wrapper">
+      <a href="index.html" class="nav-logo">
+        <span>G R I T A</span>
+        <span>|</span>
+        <span>K A R A O K E</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="menu.html">MENU</a></li>
+        <li><a href="about.html" class="active">ABOUT</a></li>
+        <li><a href="contact.html">RESERVE</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- About Hero -->
+  <section class="about-hero">
+    <h1 class="fade-in">OUR STORY</h1>
+    <div class="about-content fade-in">
+      <p>
+        <span class="about-highlight">Grita</span> was born from a simple idea: karaoke should be more than just singing—it should be an experience.
+      </p>
+      <p>
+        In the heart of Barcelona, we created a space where friends gather, inhibitions fade, and every song becomes a story. Our private rooms offer the perfect blend of intimacy and excitement, while our carefully crafted menu of Japanese-inspired dishes and signature cocktails elevates the night.
+      </p>
+      <p>
+        Whether you're celebrating a birthday, unwinding after work, or simply craving a night of unforgettable fun, Grita is your stage.
+      </p>
+    </div>
+  </section>
+
+  <!-- About Images -->
+  <div class="about-images">
+    <img src="assets/images/room-1.webp" alt="Karaoke room" class="fade-in">
+    <img src="assets/images/cocktail.png" alt="Signature cocktail" class="fade-in">
+    <img src="assets/images/room-2.jpg" alt="Grita exterior" class="fade-in">
+  </div>
+
+  <!-- Values Section -->
+  <section class="about-values">
+    <h2 class="fade-in">WHAT WE BELIEVE</h2>
+    <div class="values-grid">
+      <div class="value-card fade-in">
+        <h3>Connection</h3>
+        <p>Every room at Grita is designed for moments that matter—laughter shared, memories made, and connections deepened.</p>
+      </div>
+      <div class="value-card fade-in">
+        <h3>Quality</h3>
+        <p>From our state-of-the-art sound systems to our handcrafted cocktails, we never compromise on the details.</p>
+      </div>
+      <div class="value-card fade-in">
+        <h3>Joy</h3>
+        <p>Life is better with music. We exist to bring joy, one song at a time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reserve Section -->
+  <section class="reserve-section">
+    <h2 class="fade-in">RESERVE YOUR ROOM</h2>
+    
+    <div class="reserve-grid">
+      <div class="reserve-col">
+        <div class="map-container">
+          <iframe src="https://maps.google.com/maps?q=87%20Carrer%20Aribau%20Barcelona&z=15&output=embed" allowfullscreen></iframe>
+        </div>
+        <div class="info-box">
+          <h3>Location</h3>
+          <p>Carrer D'Aribau 87<br>Barcelona, Spain</p>
+        </div>
+      </div>
+      <div class="reserve-col">
+        <div class="reserve-image">
+          <img src="assets/images/room-2.jpg" alt="Karaoke room">
+        </div>
+        <div class="info-box">
+          <h3>Hours</h3>
+          <p>Monday to Sunday<br>1pm to 3am</p>
+        </div>
+      </div>
+    </div>
+    
+    <a href="contact.html" class="reserve-btn fade-in">RESERVE</a>
+    
+    <p class="reserve-note fade-in">
+      Reserve online or send an email to <a href="mailto:info@gritatkaraoke.com">info@gritatkaraoke.com</a>
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-logo fade-in">
+      <img src="assets/images/logo.svg" alt="Grita Karaoke">
+    </div>
+    <div class="footer-content">
+      <ul class="footer-links">
+        <li><a href="menu.html">MENU</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
+      <p class="footer-copyright">© Grita Karaoke</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
