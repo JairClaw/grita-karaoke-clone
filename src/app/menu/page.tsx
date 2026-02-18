@@ -27,17 +27,17 @@ const desserts = [
 function MenuItem({ name, price, desc, img }: { name: string; price: string; desc: string; img: string }) {
   return (
     <FadeIn>
-      <article className="flex flex-col md:flex-row gap-5 md:gap-6">
-        <div className="w-24 md:w-36 aspect-[1.3] rounded-xl overflow-hidden flex-shrink-0 border border-black/5">
+      <article className="flex gap-6 items-start">
+        <div className="w-[136px] flex-shrink-0 rounded-xl overflow-hidden border border-black/5" style={{ aspectRatio: '1.29524' }}>
           <Image src={img} alt={name} width={136} height={105} className="w-full h-full object-cover" />
         </div>
         <div className="flex-1 flex flex-col gap-2">
-          <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-5">
-            <h3 className="text-base text-primary">{name}</h3>
-            <span className="hidden md:block flex-1 h-px bg-border" />
-            <span className="text-lg text-primary">{price}</span>
+          <div className="flex items-center gap-5">
+            <h3 className="menu-item-name">{name}</h3>
+            <span className="flex-1 h-px bg-[#2c2a27]" />
+            <span className="text-[18px] text-primary">{price}</span>
           </div>
-          <p className="text-base text-secondary max-w-md">{desc}</p>
+          <p className="text-[16px] leading-[24px] text-secondary max-w-[450px]">{desc}</p>
         </div>
       </article>
     </FadeIn>
@@ -47,82 +47,82 @@ function MenuItem({ name, price, desc, img }: { name: string; price: string; des
 export default function MenuPage() {
   return (
     <main>
-      {/* Hero */}
-      <section className="relative aspect-[1.35] max-h-[890px] flex flex-col items-center justify-end overflow-hidden">
-        <div className="absolute inset-0">
+      {/* Menu Hero */}
+      <section className="relative flex flex-col items-center justify-end overflow-hidden" style={{ aspectRatio: '1.34831', maxHeight: '890px' }}>
+        <div className="absolute inset-0 z-0">
           <Image src="/images/menu-bg.png" alt="Menu background" fill className="object-cover" />
         </div>
         
-        <div className="absolute inset-0 z-10">
-          <div className="absolute w-1/5 top-[39%] -right-20 -translate-y-1/2 rotate-9 rounded-3xl overflow-hidden shadow-2xl">
+        {/* Floating images */}
+        <div className="absolute inset-0 z-[1]">
+          <div className="absolute w-[21%] top-[39%] -right-20 -translate-y-1/2 rotate-[9deg] rounded-3xl overflow-hidden shadow-2xl">
             <Image src="/images/chef.png" alt="Chef" width={300} height={400} className="w-full" />
           </div>
-          <div className="absolute w-1/5 top-36 -left-16 -rotate-6 rounded-3xl overflow-hidden shadow-2xl">
+          <div className="absolute w-[20%] top-[149px] -left-[62px] -rotate-[7deg] rounded-3xl overflow-hidden shadow-2xl">
             <Image src="/images/dish-1.png" alt="Dish" width={300} height={400} className="w-full" />
           </div>
-          <div className="absolute w-1/5 -bottom-12 -left-14 rotate-10 rounded-3xl overflow-hidden shadow-2xl">
+          <div className="absolute w-[21%] -bottom-[47px] -left-[54px] rotate-[10deg] rounded-3xl overflow-hidden shadow-2xl">
             <Image src="/images/dish-2.png" alt="Dish" width={300} height={400} className="w-full" />
           </div>
-          <div className="absolute w-1/5 -bottom-16 -right-3 -rotate-12 rounded-3xl overflow-hidden shadow-2xl">
+          <div className="absolute w-[21%] -bottom-[64px] -right-[13px] -rotate-[13deg] rounded-3xl overflow-hidden shadow-2xl">
             <Image src="/images/dish-3.png" alt="Dish" width={300} height={400} className="w-full" />
           </div>
         </div>
         
-        <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-bg-dark to-transparent z-20" />
+        {/* Bottom gradient */}
+        <div className="absolute bottom-0 left-0 right-0 h-[252px] bg-gradient-to-t from-[#0c0a10] to-transparent z-[2]" />
         
-        <div className="relative z-30 text-center pb-10 px-5 max-w-xl">
+        {/* Hero content */}
+        <div className="relative z-[3] text-center pb-10 px-5 max-w-[600px]">
           <div className="flex items-center gap-6 mb-5">
             <span className="flex-1 h-px bg-primary" />
-            <h3 className="font-serif text-3xl text-primary">THE MENU</h3>
+            <h3 className="font-serif text-[34px] leading-[36px] text-primary">THE MENU</h3>
             <span className="flex-1 h-px bg-primary" />
           </div>
-          <h1 className="font-serif text-5xl md:text-7xl lg:text-[100px] lg:leading-[96px] tracking-tight text-primary">
+          <h1 className="font-serif text-[100px] leading-[96px] tracking-[-0.03em] text-primary">
             EXCEPTIONAL FLAVORS
           </h1>
         </div>
       </section>
 
       {/* Menu Content */}
-      <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 py-16 md:py-20 px-5 md:px-10 max-w-[1200px] mx-auto">
+      <div className="flex gap-[60px] py-20 px-10 max-w-[1200px] mx-auto">
         {/* Sidebar */}
-        <aside className="lg:w-60 flex-shrink-0 lg:sticky lg:top-24 lg:h-fit flex flex-wrap lg:flex-col gap-4">
-          <a href="#drinks" className="block py-3 px-5 border border-border rounded-lg text-secondary hover:text-primary hover:border-primary transition">
-            DRINKS
-          </a>
-          <a href="#food" className="block py-3 px-5 border border-border rounded-lg text-secondary hover:text-primary hover:border-primary transition">
-            FOOD
-          </a>
-          <a href="#desserts" className="block py-3 px-5 border border-border rounded-lg text-secondary hover:text-primary hover:border-primary transition">
-            DESSERTS
-          </a>
+        <aside className="w-[239px] flex-shrink-0 sticky top-[100px] h-fit hidden lg:block">
+          <a href="#drinks" className="menu-sidebar-link mb-4">DRINKS</a>
+          <a href="#food" className="menu-sidebar-link mb-4">FOOD</a>
+          <a href="#desserts" className="menu-sidebar-link">DESSERTS</a>
         </aside>
 
-        {/* Items */}
-        <div className="flex-1 flex flex-col gap-16 md:gap-20">
+        {/* Menu Items */}
+        <div className="flex-1 flex flex-col gap-20">
+          {/* Drinks */}
           <section id="drinks" className="flex flex-col gap-10">
             <div className="flex items-center gap-5">
-              <h2 className="text-xl text-primary">DRINKS</h2>
-              <span className="flex-1 h-px bg-border" />
+              <h2 className="menu-category-title">DRINKS</h2>
+              <span className="flex-1 h-px bg-[#2c2a27]" />
             </div>
             <div className="flex flex-col gap-10">
               {drinks.map((item) => <MenuItem key={item.name} {...item} />)}
             </div>
           </section>
 
+          {/* Food */}
           <section id="food" className="flex flex-col gap-10">
             <div className="flex items-center gap-5">
-              <h2 className="text-xl text-primary">FOOD</h2>
-              <span className="flex-1 h-px bg-border" />
+              <h2 className="menu-category-title">FOOD</h2>
+              <span className="flex-1 h-px bg-[#2c2a27]" />
             </div>
             <div className="flex flex-col gap-10">
               {food.map((item) => <MenuItem key={item.name} {...item} />)}
             </div>
           </section>
 
+          {/* Desserts */}
           <section id="desserts" className="flex flex-col gap-10">
             <div className="flex items-center gap-5">
-              <h2 className="text-xl text-primary">DESSERTS</h2>
-              <span className="flex-1 h-px bg-border" />
+              <h2 className="menu-category-title">DESSERTS</h2>
+              <span className="flex-1 h-px bg-[#2c2a27]" />
             </div>
             <div className="flex flex-col gap-10">
               {desserts.map((item) => <MenuItem key={item.name} {...item} />)}

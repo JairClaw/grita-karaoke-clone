@@ -3,8 +3,8 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className="bg-bg-dark px-5 pb-20 flex flex-col items-center gap-[140px] overflow-hidden">
-      {/* Large logo - nearly full width like original */}
+    <footer className="bg-[#0c0a10] px-5 pb-20 flex flex-col items-center gap-[140px] overflow-hidden">
+      {/* Large logo - full width like original */}
       <div className="w-full max-w-[1159px]">
         <Image
           src="/images/logo.svg"
@@ -17,19 +17,20 @@ export default function Footer() {
       </div>
 
       <div className="flex flex-col items-center gap-6">
-        <ul className="flex gap-10">
+        {/* Footer links use secondary color, hover to primary */}
+        <ul className="flex gap-10 list-none">
           <li>
-            <Link href="/menu" className="nav-link">
+            <Link href="/menu" className="footer-link">
               MENU
             </Link>
           </li>
           <li>
-            <Link href="/about" className="nav-link">
+            <Link href="/about" className="footer-link">
               ABOUT
             </Link>
           </li>
           <li>
-            <Link href="/contact" className="nav-link">
+            <Link href="/contact" className="footer-link">
               CONTACT
             </Link>
           </li>

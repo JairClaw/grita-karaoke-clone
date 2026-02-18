@@ -10,79 +10,92 @@ const StarIcon = () => (
   </svg>
 );
 
-// Duplicate images for seamless infinite scroll
+// Duplicate images for seamless infinite scroll (need enough to fill viewport + animation)
 const carouselImages1 = [
   '/images/room-1.webp',
   '/images/room-2.jpg', 
   '/images/cocktail.png',
-  '/images/food-1.webp',
   '/images/room-1.webp',
   '/images/room-2.jpg',
   '/images/cocktail.png',
-  '/images/food-1.webp',
+  '/images/room-1.webp',
+  '/images/room-2.jpg',
+  '/images/cocktail.png',
 ];
 
 const carouselImages2 = [
+  '/images/food-1.webp',
   '/images/food-2.jpg',
   '/images/food-3.png',
-  '/images/room-1.webp',
-  '/images/cocktail.png',
+  '/images/food-1.webp',
   '/images/food-2.jpg',
   '/images/food-3.png',
-  '/images/room-1.webp',
-  '/images/cocktail.png',
+  '/images/food-1.webp',
+  '/images/food-2.jpg',
+  '/images/food-3.png',
 ];
 
 export default function Home() {
   return (
-    <main className="bg-bg-dark">
+    <main>
       {/* Hero Section */}
-      <section className="relative h-screen flex flex-col items-center justify-end overflow-hidden">
+      <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover z-0"
         >
           <source src="/videos/hero.mp4" type="video/mp4" />
         </video>
         
-        {/* Top gradient */}
-        <div className="absolute top-0 left-0 right-0 h-[380px] bg-gradient-to-b from-bg-dark to-transparent z-10" />
-        {/* Bottom gradient */}
-        <div className="absolute bottom-0 left-0 right-0 h-[380px] bg-gradient-to-t from-bg-dark to-transparent z-10" />
+        {/* Top gradient overlay */}
+        <div className="absolute top-0 left-0 right-0 h-[380px] bg-gradient-to-b from-[#0c0a10] to-transparent z-[1]" />
+        {/* Bottom gradient overlay */}
+        <div className="absolute bottom-0 left-0 right-0 h-[380px] bg-gradient-to-t from-[#0c0a10] to-transparent z-[1]" />
         
-        {/* Hero Content - positioned at bottom */}
-        <div className="relative z-20 text-center w-[90%] md:w-[60%] mb-10 flex flex-col items-center gap-3 min-h-[388px] justify-center">
+        {/* Hero Content - positioned at bottom like original */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-[2] text-center w-[60%] min-h-[388px] flex flex-col items-center justify-center gap-3 px-5">
           <div className="flex gap-3 text-primary mb-3">
             <StarIcon />
             <StarIcon />
             <StarIcon />
           </div>
-          <h1 className="font-serif text-[64px] md:text-[80px] lg:text-[100px] leading-[1] tracking-[-0.03em] text-primary">
+          <h1 className="font-serif text-[100px] leading-[96px] tracking-[-0.03em] text-primary mb-3">
             Sing, sip, and savor
           </h1>
-          <p className="text-[18px] md:text-[22px] leading-[1.5] text-secondary max-w-[600px]">
+          <p className="text-[22px] leading-[34px] text-secondary max-w-[600px]">
             Grita transforms karaoke into an immersive night of rhythm, laughter, and unforgettable moments.
           </p>
         </div>
       </section>
 
-      {/* Image Carousel Section - NO duplicate heading */}
+      {/* Image Carousel Section - WITH header like original */}
       <section className="pt-[120px] flex flex-col items-center gap-[61px]">
-        <div className="w-full overflow-hidden relative h-[950px] md:h-[1000px]">
-          {/* Gradient overlays */}
-          <div className="absolute top-0 left-0 right-0 h-[241px] bg-gradient-to-b from-bg-dark to-transparent z-10 pointer-events-none" />
-          <div className="absolute bottom-0 left-0 right-0 h-[241px] bg-gradient-to-t from-bg-dark to-transparent z-10 pointer-events-none" />
-          <div className="absolute left-0 top-0 bottom-0 w-[150px] md:w-[250px] bg-gradient-to-r from-bg-dark to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-[150px] md:w-[250px] bg-gradient-to-l from-bg-dark to-transparent z-10 pointer-events-none" />
+        {/* Carousel Header - same as hero text */}
+        <FadeIn className="text-center max-w-[600px] px-5">
+          <h2 className="font-serif text-[100px] leading-[96px] tracking-[-0.03em] text-primary mb-3">
+            Sing, sip, and savor
+          </h2>
+          <p className="text-[22px] leading-[34px] text-secondary">
+            Grita transforms karaoke into an immersive night of rhythm, laughter, and unforgettable moments.
+          </p>
+        </FadeIn>
 
-          {/* Top row - scrolls left */}
-          <div className="carousel-track gap-4 mb-4">
+        {/* Carousel Container */}
+        <div className="w-full overflow-hidden relative">
+          {/* Gradient overlays */}
+          <div className="absolute top-0 left-0 right-0 h-[241px] bg-gradient-to-b from-[#0c0a10] to-transparent z-[1] pointer-events-none" />
+          <div className="absolute bottom-0 left-0 right-0 h-[241px] bg-gradient-to-t from-[#0c0a10] to-transparent z-[1] pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-[250px] bg-gradient-to-r from-[#0c0a10] to-transparent z-[1] pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-[250px] bg-gradient-to-l from-[#0c0a10] to-transparent z-[1] pointer-events-none" />
+
+          {/* Top carousel row - scrolls left */}
+          <div className="carousel-track">
             {carouselImages1.map((src, i) => (
-              <div key={`top-${i}`} className="flex-shrink-0 w-[280px] md:w-[389px] h-[335px] md:h-[466px] rounded-[24px] overflow-hidden">
-                <Image src={src} alt="Grita" width={389} height={466} className="w-full h-full object-cover" />
+              <div key={`top-${i}`} className="flex-shrink-0 w-[389px] h-[466px] rounded-[24px] overflow-hidden">
+                <Image src={src} alt="Grita Karaoke" width={389} height={466} className="w-full h-full object-cover" />
               </div>
             ))}
           </div>
@@ -90,16 +103,16 @@ export default function Home() {
           {/* Center button */}
           <Link
             href="/menu"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 btn-primary"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 btn-primary"
           >
             EXPLORE MENU
           </Link>
 
-          {/* Bottom row - scrolls right */}
-          <div className="carousel-track-reverse gap-4">
+          {/* Bottom carousel row - scrolls right */}
+          <div className="carousel-track-reverse mt-4">
             {carouselImages2.map((src, i) => (
-              <div key={`bottom-${i}`} className="flex-shrink-0 w-[280px] md:w-[389px] h-[335px] md:h-[466px] rounded-[24px] overflow-hidden">
-                <Image src={src} alt="Grita" width={389} height={466} className="w-full h-full object-cover" />
+              <div key={`bottom-${i}`} className="flex-shrink-0 w-[389px] h-[466px] rounded-[24px] overflow-hidden">
+                <Image src={src} alt="Grita Karaoke" width={389} height={466} className="w-full h-full object-cover" />
               </div>
             ))}
           </div>
@@ -108,22 +121,22 @@ export default function Home() {
 
       {/* Own The Mic Section */}
       <section className="py-[120px] flex flex-col items-center gap-10 overflow-hidden">
-        <FadeIn className="text-center px-5">
-          <h2 className="font-serif text-[64px] md:text-[80px] lg:text-[100px] leading-[1] tracking-[-0.03em] text-primary mb-3">
+        <FadeIn className="text-center max-w-[600px] px-5">
+          <h2 className="font-serif text-[100px] leading-[96px] tracking-[-0.03em] text-primary">
             OWN THE MIC
           </h2>
-          <p className="text-[18px] md:text-[22px] leading-[1.5] text-secondary">
+          <p className="text-[22px] leading-[34px] text-secondary">
             Step into your private stage.
           </p>
         </FadeIn>
-        <FadeIn className="w-full">
+        <FadeIn className="w-full slide-in-right">
           <Image
             src="/images/room-wide.png"
             alt="Karaoke room interior"
             width={1200}
             height={596}
             className="w-full object-cover"
-            style={{ aspectRatio: '2.0157 / 1' }}
+            style={{ aspectRatio: '2.01575 / 1' }}
           />
         </FadeIn>
       </section>

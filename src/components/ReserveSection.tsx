@@ -4,9 +4,9 @@ import FadeIn from './FadeIn';
 
 export default function ReserveSection() {
   return (
-    <section className="bg-bg-dark py-[120px] px-5 flex flex-col items-center gap-2">
+    <section className="bg-[#0c0a10] py-[120px] px-5 flex flex-col items-center gap-2">
       <FadeIn>
-        <h2 className="font-serif text-[64px] md:text-[80px] lg:text-[100px] leading-[1] tracking-[-0.03em] text-primary text-center mb-10">
+        <h2 className="font-serif text-[100px] leading-[96px] tracking-[-0.03em] text-primary text-center mb-10">
           RESERVE YOUR ROOM
         </h2>
       </FadeIn>
@@ -14,7 +14,7 @@ export default function ReserveSection() {
       <div className="flex flex-col md:flex-row gap-5 max-w-[800px] w-full">
         {/* Left column */}
         <div className="flex-1 flex flex-col gap-5">
-          <div className="aspect-square rounded-[20px] overflow-hidden bg-neutral-800 map-dark">
+          <div className="aspect-square rounded-[20px] overflow-hidden bg-[#f5f5f5]">
             <iframe
               src="https://maps.google.com/maps?q=87%20Carrer%20Aribau%20Barcelona&z=15&output=embed"
               className="w-full h-full border-0"
@@ -22,11 +22,9 @@ export default function ReserveSection() {
               loading="lazy"
             />
           </div>
-          <div>
-            <h3 className="text-[24px] font-semibold tracking-[-0.02em] text-primary mb-2">
-              Location
-            </h3>
-            <p className="text-[22px] leading-[1.5] text-[#999]">
+          <div className="info-box">
+            <h3>Location</h3>
+            <p>
               Carrer D&apos;Aribau 87
               <br />
               Barcelona, Spain
@@ -45,11 +43,9 @@ export default function ReserveSection() {
               className="w-full h-full object-cover"
             />
           </div>
-          <div>
-            <h3 className="text-[24px] font-semibold tracking-[-0.02em] text-primary mb-2">
-              Hours
-            </h3>
-            <p className="text-[22px] leading-[1.5] text-[#999]">
+          <div className="info-box">
+            <h3>Hours</h3>
+            <p>
               Monday to Sunday
               <br />
               1pm to 3am

@@ -7,6 +7,9 @@
   --color-text-secondary: #73747d;
   --color-accent: #f1c287;
   --color-border: #2c2a27;
+  --font-heading: 'Forum', serif;
+  --font-body: 'Inter Display', 'Inter', sans-serif;
+  --transition: 0.3s ease;
 }
 
 @theme inline {
@@ -17,7 +20,7 @@
   --color-accent: #f1c287;
   --color-border: #2c2a27;
   --font-serif: 'Forum', Georgia, serif;
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-sans: 'Inter Display', 'Inter', system-ui, sans-serif;
 }
 
 * {
@@ -28,20 +31,72 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  font-family: var(--font-sans);
-  background-color: var(--color-bg-dark);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: var(--color-bg);
   color: var(--color-text-secondary);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
 
 /* Ensure Forum font loads for headings */
 .font-serif {
   font-family: 'Forum', Georgia, serif !important;
   font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  color: var(--color-text-primary);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition);
+}
+
+/* Navigation */
+.nav-logo {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--color-text-primary);
+  display: flex;
+  gap: 8px;
+  transition: color var(--transition);
+}
+
+.nav-logo:hover {
+  color: rgba(255, 237, 216, 0.6);
+}
+
+.nav-link {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--color-text-primary);
+  transition: color var(--transition);
+}
+
+.nav-link:hover {
+  color: rgba(255, 237, 216, 0.6);
+}
+
+/* Footer nav links - different from main nav */
+.footer-link {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--color-text-secondary);
+  transition: color var(--transition);
+}
+
+.footer-link:hover {
+  color: var(--color-text-primary);
 }
 
 /* Carousel Animation - Proper infinite scroll */
@@ -57,14 +112,16 @@ body {
 
 .carousel-track {
   display: flex;
+  gap: 16px;
   width: max-content;
-  animation: marquee 40s linear infinite;
+  animation: marquee 30s linear infinite;
 }
 
 .carousel-track-reverse {
   display: flex;
+  gap: 16px;
   width: max-content;
-  animation: marquee-reverse 40s linear infinite;
+  animation: marquee-reverse 30s linear infinite;
 }
 
 .carousel-track:hover,
@@ -75,9 +132,8 @@ body {
 /* Fade animations */
 .fade-in {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 .fade-in.visible {
@@ -85,17 +141,36 @@ body {
   transform: translateY(0);
 }
 
-/* Slide in from right */
-.slide-in {
+.slide-in-right {
   opacity: 0;
   transform: translateX(100px);
-  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.slide-in.visible {
+.slide-in-right.visible {
   opacity: 1;
   transform: translateX(0);
+}
+
+/* Primary button style */
+.btn-primary {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: capitalize;
+  padding: 16px 40px;
+  border: none;
+  cursor: pointer;
+  transition: filter var(--transition);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  filter: brightness(0.9);
 }
 
 /* Form styles */
@@ -107,7 +182,7 @@ input, select, textarea {
   color: var(--color-text-primary);
   font-family: inherit;
   font-size: 16px;
-  transition: border-color 0.3s ease;
+  transition: border-color var(--transition);
   width: 100%;
 }
 
@@ -129,7 +204,7 @@ select {
 }
 
 select option {
-  background: var(--color-bg-dark);
+  background: var(--color-bg);
   color: var(--color-text-primary);
 }
 
@@ -138,37 +213,50 @@ textarea {
   min-height: 120px;
 }
 
-/* Primary button style */
-.btn-primary {
-  background-color: var(--color-accent);
-  color: var(--color-bg-dark);
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  padding: 16px 40px;
-  border: none;
-  cursor: pointer;
-  transition: filter 0.3s ease;
-  text-transform: uppercase;
-  font-size: 16px;
-}
-
-.btn-primary:hover {
-  filter: brightness(0.9);
-}
-
-/* Nav link style */
-.nav-link {
-  font-size: 12px;
-  letter-spacing: 0.15em;
+/* Info box styling */
+.info-box h3 {
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
   color: var(--color-text-primary);
-  transition: opacity 0.3s ease;
+  margin-bottom: 10px;
 }
 
-.nav-link:hover {
-  opacity: 0.6;
+.info-box p {
+  font-size: 22px;
+  line-height: 1.5;
+  color: #999;
 }
 
-/* Map iframe filter for dark theme */
-.map-dark iframe {
-  filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.9);
+/* Menu sidebar */
+.menu-sidebar-link {
+  display: block;
+  padding: 12px 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 16px;
+  color: var(--color-text-secondary);
+  transition: all var(--transition);
+}
+
+.menu-sidebar-link:hover,
+.menu-sidebar-link.active {
+  color: var(--color-text-primary);
+  border-color: var(--color-text-primary);
+}
+
+/* Menu item styling */
+.menu-item-name {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-text-primary);
+}
+
+.menu-category-title {
+  font-family: var(--font-body);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--color-text-primary);
 }

@@ -6,39 +6,39 @@ import Footer from '@/components/Footer';
 export default function ContactPage() {
   return (
     <main>
-      {/* Hero */}
+      {/* Contact Hero */}
       <section className="min-h-screen flex flex-col items-center justify-center pt-32 pb-20 px-5 text-center">
         <FadeIn>
-          <h1 className="font-serif text-5xl md:text-7xl lg:text-[100px] lg:leading-[96px] tracking-tight text-primary mb-6">
+          <h1 className="font-serif text-[100px] leading-[96px] tracking-[-0.03em] text-primary mb-6">
             RESERVE
           </h1>
         </FadeIn>
         <FadeIn>
-          <p className="text-lg md:text-xl text-secondary max-w-xl mb-16">
+          <p className="text-[22px] leading-[34px] text-secondary max-w-[600px] mb-16">
             Book your private karaoke room and get ready for an unforgettable night.
           </p>
         </FadeIn>
 
-        <FadeIn className="w-full max-w-lg">
+        <FadeIn className="w-full max-w-[500px]">
           <form className="flex flex-col gap-5">
             <div className="flex flex-col md:flex-row gap-5">
               <div className="flex-1 flex flex-col gap-2 text-left">
-                <label className="text-xs tracking-[0.1em] text-secondary uppercase">Name</label>
+                <label className="text-[12px] tracking-[0.1em] text-secondary uppercase">Name</label>
                 <input type="text" placeholder="Your name" required />
               </div>
               <div className="flex-1 flex flex-col gap-2 text-left">
-                <label className="text-xs tracking-[0.1em] text-secondary uppercase">Email</label>
+                <label className="text-[12px] tracking-[0.1em] text-secondary uppercase">Email</label>
                 <input type="email" placeholder="your@email.com" required />
               </div>
             </div>
 
             <div className="flex flex-col md:flex-row gap-5">
               <div className="flex-1 flex flex-col gap-2 text-left">
-                <label className="text-xs tracking-[0.1em] text-secondary uppercase">Date</label>
+                <label className="text-[12px] tracking-[0.1em] text-secondary uppercase">Date</label>
                 <input type="date" required />
               </div>
               <div className="flex-1 flex flex-col gap-2 text-left">
-                <label className="text-xs tracking-[0.1em] text-secondary uppercase">Time</label>
+                <label className="text-[12px] tracking-[0.1em] text-secondary uppercase">Time</label>
                 <select required>
                   <option value="">Select time</option>
                   <option value="13:00">1:00 PM</option>
@@ -61,7 +61,7 @@ export default function ContactPage() {
 
             <div className="flex flex-col md:flex-row gap-5">
               <div className="flex-1 flex flex-col gap-2 text-left">
-                <label className="text-xs tracking-[0.1em] text-secondary uppercase">Number of Guests</label>
+                <label className="text-[12px] tracking-[0.1em] text-secondary uppercase">Number of Guests</label>
                 <select required>
                   <option value="">Select</option>
                   <option value="2-4">2-4 guests</option>
@@ -71,7 +71,7 @@ export default function ContactPage() {
                 </select>
               </div>
               <div className="flex-1 flex flex-col gap-2 text-left">
-                <label className="text-xs tracking-[0.1em] text-secondary uppercase">Room Preference</label>
+                <label className="text-[12px] tracking-[0.1em] text-secondary uppercase">Room Preference</label>
                 <select>
                   <option value="">No preference</option>
                   <option value="small">Small Room (2-4)</option>
@@ -83,14 +83,11 @@ export default function ContactPage() {
             </div>
 
             <div className="flex flex-col gap-2 text-left">
-              <label className="text-xs tracking-[0.1em] text-secondary uppercase">Special Requests</label>
+              <label className="text-[12px] tracking-[0.1em] text-secondary uppercase">Special Requests</label>
               <textarea placeholder="Any special requests or occasions?" />
             </div>
 
-            <button
-              type="submit"
-              className="bg-accent text-bg py-4 px-10 text-base font-medium tracking-[0.1em] uppercase hover:brightness-90 transition mt-5"
-            >
+            <button type="submit" className="btn-primary mt-5">
               Request Reservation
             </button>
           </form>
@@ -100,27 +97,27 @@ export default function ContactPage() {
       {/* Contact Info */}
       <div className="py-20 px-5 flex flex-wrap justify-center gap-20">
         <FadeIn className="text-center">
-          <h3 className="text-base font-medium tracking-[0.1em] text-primary uppercase mb-3">Location</h3>
-          <p className="text-lg text-secondary">
+          <h3 className="text-[16px] font-medium tracking-[0.1em] text-primary uppercase mb-3">Location</h3>
+          <p className="text-[18px] leading-[28px] text-secondary">
             Carrer D&apos;Aribau 87<br />Barcelona, Spain
           </p>
         </FadeIn>
         <FadeIn className="text-center">
-          <h3 className="text-base font-medium tracking-[0.1em] text-primary uppercase mb-3">Hours</h3>
-          <p className="text-lg text-secondary">
+          <h3 className="text-[16px] font-medium tracking-[0.1em] text-primary uppercase mb-3">Hours</h3>
+          <p className="text-[18px] leading-[28px] text-secondary">
             Monday to Sunday<br />1pm to 3am
           </p>
         </FadeIn>
         <FadeIn className="text-center">
-          <h3 className="text-base font-medium tracking-[0.1em] text-primary uppercase mb-3">Contact</h3>
-          <a href="mailto:info@gritakaraoke.com" className="text-lg text-secondary hover:text-primary transition">
+          <h3 className="text-[16px] font-medium tracking-[0.1em] text-primary uppercase mb-3">Contact</h3>
+          <a href="mailto:info@gritakaraoke.com" className="text-[18px] text-secondary hover:text-primary transition-colors">
             info@gritakaraoke.com
           </a>
         </FadeIn>
       </div>
 
       {/* Map */}
-      <div className="w-full h-96">
+      <div className="w-full h-[400px]">
         <iframe
           src="https://maps.google.com/maps?q=87%20Carrer%20Aribau%20Barcelona&z=15&output=embed"
           className="w-full h-full border-0 grayscale invert opacity-70"
