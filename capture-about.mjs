@@ -1,0 +1,17 @@
+import puppeteer from 'puppeteer';
+const browser = await puppeteer.launch({ headless: 'new' });
+const page = await browser.newPage();
+await page.setViewport({ width: 1440, height: 900 });
+await page.goto('https://gritakaraoke.com/', { waitUntil: 'networkidle2', timeout: 30000 });
+await page.type('input', 'aquamarine-learning-knot');
+await page.keyboard.press('Enter');
+await new Promise(r => setTimeout(r, 3000));
+await page.goto('https://gritakaraoke.com/about', { waitUntil: 'networkidle2', timeout: 30000 });
+await new Promise(r => setTimeout(r, 2000));
+await page.screenshot({ path: 'original-about.png', fullPage: true });
+console.log('✓ About captured');
+await page.goto('https://gritakaraoke.com/contact', { waitUntil: 'networkidle2', timeout: 30000 });
+await new Promise(r => setTimeout(r, 2000));
+await page.screenshot({ path: 'original-contact.png', fullPage: true });
+console.log('✓ Contact captured');
+await browser.close();
